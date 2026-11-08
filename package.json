@@ -1,10 +1,13 @@
 {
   "name": "git-push-sound",
-  "displayName": "Git Push Sound",
+  "displayName": "OmBhatSwaha",
   "description": "Plays the iconic 'Om Phat Swaha' (Tatya Vinchu) sound whenever git push succeeds in the VS Code integrated terminal.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "publisher": "devsushant03",
-  "repository": { "type": "git", "url": "https://github.com/DevSushant03/git-push-sound" },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/DevSushant03/git-push-sound"
+  },
   "license": "MIT",
   "engines": {
     "vscode": "^1.93.0"
@@ -54,14 +57,14 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.145.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "24.x",
-    "typescript-eslint": "^8.61.1",
+    "@types/vscode": "^1.93.0",
+    "@vscode/test-cli": "^0.0.15",
+    "@vscode/test-electron": "^3.0.0",
     "eslint": "^10.5.0",
     "typescript": "^6.0.3",
-    "@vscode/test-cli": "^0.0.15",
-    "@vscode/test-electron": "^3.0.0"
+    "typescript-eslint": "^8.61.1"
   },
   "overrides": {
     "diff": "^8.0.4",
