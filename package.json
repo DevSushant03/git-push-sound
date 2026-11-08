@@ -2,7 +2,8 @@
   "name": "git-push-sound",
   "displayName": "OmBhatSwaha",
   "description": "Plays the iconic 'Om Phat Swaha' (Tatya Vinchu) sound whenever git push succeeds in the VS Code integrated terminal.",
-  "version": "0.0.2",
+  "version": "0.0.3",
+  "icon":"image/icon.png",
   "publisher": "devsushant03",
   "repository": {
     "type": "git",
