@@ -1,71 +1,44 @@
-# git-push-sound README
+# Git Push Sound (Tatya Vinchu Edition)
 
-This is the README for your extension "git-push-sound". After writing up a brief description, we recommend including the following sections.
+Play the iconic **"Om Phat Swaha"** (Tatya Vinchu) sound whenever your `git push` succeeds in the VS Code integrated terminal!
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- **Automatic Detection:** Uses the modern VS Code Terminal Shell Integration API (`vscode.window.onDidEndTerminalShellExecution`) to detect when `git push` finishes with exit code `0`.
+- **Zero Heavy Dependencies:** Lightweight sound playback via built-in OS utilities through Node `child_process`:
+  - **Windows:** PowerShell `(New-Object Media.SoundPlayer 'path').PlaySync()`
+  - **macOS:** `afplay`
+  - **Linux:** `paplay` (with automatic fallback to `aplay`)
+- **Bundled Sound:** Plays `media/Om_Phat_Swaha.wav` upon every successful git push.
+- **Custom Sound Support:** Optionally configure any custom `.wav` sound file of your choice.
+- **Commands:** Quickly toggle the sound on/off or test sound playback from the Command Palette.
 
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+> **Icon Note:** To add an extension icon, place a 128x128 PNG image (e.g. `images/icon.png`) in the project and add `"icon": "images/icon.png"` to `package.json`.
 
 ---
 
-## Following extension guidelines
+## Extension Settings
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+This extension contributes the following settings:
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+* `gitPushSound.enabled`: Enable or disable sound playback when `git push` succeeds (default: `true`).
+* `gitPushSound.customSoundPath`: Absolute path to a custom sound file (`.wav` recommended). Leave empty to use the bundled "Om Phat Swaha" sound.
 
-## Working with Markdown
+---
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+## Commands
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+Access these commands from the VS Code Command Palette (`Ctrl+Shift+P` / `Cmd+Shift+P`):
 
-## For more information
+* `Git Push Sound: Toggle Enabled/Disabled` (`gitPushSound.toggle`): Quickly enable or disable the extension.
+* `Git Push Sound: Test Sound Playback` (`gitPushSound.test`): Play the active sound once for testing.
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
+---
 
-**Enjoy!**
+## Requirements
+
+- VS Code version 1.93.0 or newer (with terminal shell integration enabled, which is enabled by default in modern VS Code versions).
+- Compatible OS audio tools:
+  - Windows: PowerShell (built into Windows)
+  - macOS: `afplay` (built into macOS)
+  - Linux: `paplay` (PulseAudio) or `aplay` (ALSA)

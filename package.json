@@ -1,28 +1,54 @@
 {
   "name": "git-push-sound",
-  "displayName": "git-push-sound",
-  "description": "This extention make sound of popular Indian cinema puppet called Tatya_Vinchu when user successfully push the code",
+  "displayName": "Git Push Sound",
+  "description": "Plays the iconic 'Om Phat Swaha' (Tatya Vinchu) sound whenever git push succeeds in the VS Code integrated terminal.",
   "version": "0.0.1",
+  "publisher": "devsushant03",
+  "repository": { "type": "git", "url": "https://github.com/DevSushant03/git-push-sound" },
+  "license": "MIT",
   "engines": {
-    "vscode": "^1.145.0"
+    "vscode": "^1.93.0"
   },
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:gitPushSound.test",
+    "onCommand:gitPushSound.toggle"
+  ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "git-push-sound.helloWorld",
-        "title": "Hello World"
+        "command": "gitPushSound.toggle",
+        "title": "Git Push Sound: Toggle Enabled/Disabled"
+      },
+      {
+        "command": "gitPushSound.test",
+        "title": "Git Push Sound: Test Sound Playback"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Git Push Sound",
+      "properties": {
+        "gitPushSound.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable or disable sound playback when git push succeeds."
+        },
+        "gitPushSound.customSoundPath": {
+          "type": "string",
+          "default": "",
+          "description": "Absolute path to a custom sound file (.wav recommended). If empty, the bundled 'Om Phat Swaha' sound is used."
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "compile": "node ./scripts/generate-sound.js && tsc -p ./",
+    "watch": "node ./scripts/generate-sound.js && tsc -watch -p ./",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src",
     "test": "vscode-test"
