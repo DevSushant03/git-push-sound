@@ -1,8 +1,6 @@
 import * as vscode from 'vscode';
 import { playSound } from './player';
 
-
-
 export function activate(context: vscode.ExtensionContext) {
   console.log('git-push-sound activated');
   vscode.window.showInformationMessage('Git Push Sound activated');
